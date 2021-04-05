@@ -39,7 +39,7 @@ function create() {
 
     global.scene = this;
 
-    for (var i = 0; i < 64; i++) {
+    for (var i = 0; i < 32; i++) {
         var ball = this.matter.add.image(Phaser.Math.Between(0, game.config.width), Phaser.Math.Between(0, game.config.height), 'ball');
         ball.setCircle(5);
         ball.setBounce(1);
@@ -48,7 +48,7 @@ function create() {
         ball.tint = Math.random() * 0xffffff;
     }
 
-    for (var i = 0; i < 32; i++) {
+    for (var i = 0; i < 16; i++) {
         var bin = this.matter.add.image(Phaser.Math.Between(0, game.config.width), Phaser.Math.Between(0, game.config.height), 'bin');
         bin.setScale(global.scale);
         bin.tint = Math.random() * 0xffffff;
