@@ -1,5 +1,6 @@
 var global = {
-    scene: undefined
+    scene: undefined,
+    scale: 4,
 };
 
 var config = {
@@ -42,14 +43,14 @@ function create() {
         var ball = this.matter.add.image(Phaser.Math.Between(0, game.config.width), Phaser.Math.Between(0, game.config.height), 'ball');
         ball.setCircle(5);
         ball.setBounce(1);
-        ball.setScale(2);
+        ball.setScale(global.scale);
         ball.setMass(1 + Math.random() * 10);
         ball.tint = Math.random() * 0xffffff;
     }
 
     for (var i = 0; i < 32; i++) {
         var bin = this.matter.add.image(Phaser.Math.Between(0, game.config.width), Phaser.Math.Between(0, game.config.height), 'bin');
-        bin.setScale(2);
+        bin.setScale(global.scale);
         bin.tint = Math.random() * 0xffffff;
         bin.setMass(1 + Math.random() * 100);
     }
