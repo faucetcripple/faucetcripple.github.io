@@ -5,7 +5,7 @@
     <title>World Gravity</title>
     <meta name="author" content="d74g0n">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="examples.css">
+<!--    <link rel="stylesheet" href="examples.css">-->
     <link rel="stylesheet" href="">
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
@@ -32,6 +32,7 @@
         border-radius: 24px;
         background: rgba(15, 15, 15, 0.8);
         width: 300px;
+        visibility: hidden;
     }
 
     body {
@@ -48,17 +49,40 @@
     #label {
         margin-top: 200px;
         color: rgb(156, 156, 156);
+        visibility: hidden;
     }
 
     .disp {
         padding-bottom: 20px;
         color: limegreen;
         transition: 1s;
+        visibility: hidden;
     }
 
     br {
         height: 1em;
     }
+    * {
+    margin: 0;
+    padding: 0;
+    background: black;
+}
+
+/* to remove the top and left whitespace */
+
+html,
+body {
+    width: 98%;
+    height: 98%;
+}
+
+div {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+}
+
 </style>
 <div id="game"></div>
 <body><br>
