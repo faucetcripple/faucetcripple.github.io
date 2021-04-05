@@ -69,11 +69,15 @@
     </center>
     <center><span id='readoutE'></span></center>
     <script>
+        
+        
         // Orientation Check
         var supportsOrientation = "No"
         if (window.DeviceOrientationEvent) {
             window.addEventListener("deviceorientation", deviceOrientationListener);
             var supportsOrientation = "Yes";
+            
+            screen.orientation.lock('portrait');
         } else {
             document.getElementById("readoutE").innerHTML = "No Support!"
         }
