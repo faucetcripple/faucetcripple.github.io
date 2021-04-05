@@ -1,21 +1,63 @@
 <!DOCTYPE html>
-<html lang="ENG">
+<html lang="">
+
 <head>
     <meta charset="utf-8">
-    <title>Fullscreen</title>
-    <meta name="author" content="d74g0n">
+    <title>Device Orientation Example</title>
+    <meta name="author" content="Your Name">
+    <meta name="description" content="Example description">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="fullscreen.css">
     <link rel="stylesheet" href="">
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-
+    <link rel="icon" type="image/x-icon" href="" />
 </head>
-<script src="//cdn.jsdelivr.net/npm/phaser@3.54.0/dist/phaser.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.js"></script>
-<script src="//pagecdn.io/lib/ace/1.4.12/ace.js" crossorigin="anonymous" integrity="sha256-Q9hnBpgBFstzZOr+OKFOWZWfcF5nFXO8Qz48Nmndo6U="></script>
 
+    <style>
+        body{
+            background: black;
+            color: white;
+            font-size: 42px;
+        }
+        
+        *{
+            margin: 0;
+            padding: 20px;
+        }
+    
+    </style>
+    
 <body>
-     </br>
-    <script src="fullscreen.js"></script>
-    <div id="game"></div>  
-</body></html>
+    <header></header>
+    
+    <center><span id='readout'></span></center>
+    <center><span id='readout2'></span></center>
+    
+    <main></main>
+    <footer></footer>
+    <script>
+        function deviceOrientationListener(event) {
+
+            document.getElementById('readout').textContent = `A: ${Math.round(event.alpha)} B: ${Math.round(event.beta)} G: ${Math.round(event.gamma)}`;
+
+        
+            var event_readout = 'event: '
+            for(var key in event) {
+                event_readout += `${key}: ${event[key]}`;
+            }
+            console.log(event);
+                        document.getElementById('readout2').textContent = `E: ${event_readout}`;
+            
+        }
+        // Orientation Check
+        var supportsOrientation = "No"
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener("deviceorientation", deviceOrientationListener);
+            var supportsOrientation = "Yes";
+        } else {
+            document.getElementById("readout").innerHTML = "deviceorientation Not Supported!"
+        }
+        //END Check to see if browser supports motion
+
+    </script>
+</body>
+
+</html>
