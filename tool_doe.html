@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>Device Orientation Event</title>
+    <meta name="author" content="d74g0n">
+    <meta name="description" content="Device Orientation">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<style>
+    @font-face {
+        font-family: 'VT220';
+        src: url('fonts/VT220-mod.ttf');
+    }
+    
+    #display {
+        border: 2px solid brown;
+    }
+
+    body {
+        font-family: 'VT220';
+        background: black;
+        color: rgb(156, 156, 156);
+        font-size: 42px;
+    }
+
+    * {
+        margin: 0;
+        padding: 20px;
+    }
+</style>
+
+<body>
+    <div id='display'>
+        <center><span id='readoutA'></span></center>
+        <center><span id='readoutB'></span></center>
+        <center><span id='readoutG'></span></center>
+    </div>
+    <script>
+        // Orientation Check
+        var supportsOrientation = "No"
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener("deviceorientation", deviceOrientationListener);
+            var supportsOrientation = "Yes";
+        } else {
+            document.getElementById("readout").innerHTML = "deviceorientation Not Supported!"
+        }
+        //END Check to see if browser supports motion
+
+        function deviceOrientationListener(event) {
+            document.getElementById('readoutA').textContent = `Alpha: ${Math.round(event.alpha)}`
+            document.getElementById('readoutB').textContent = `Beta: ${Math.round(event.beta)}`
+            document.getElementById('readoutG').textContent = `Gamma: ${Math.round(event.gamma)}`
+        }
+    </script>
+</body></html>
