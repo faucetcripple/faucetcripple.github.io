@@ -1,6 +1,22 @@
-# d74g0n's WebKitchen
-This is simple Javascript.
+# <span style="font-family:VT220-mod;">d74g0n's WebKitchen.io
+## <span style="font-family:VT220-mod;">Follow Me, [https://www.twitch.tv/d74g0n](https://www.twitch.tv/d74g0n)
+    
+<span style="font-family:VT220-mod;"> Best viewed using [VT220-mod.ttf](https://faucetcripple.github.io/use_doe/fonts/VT220-mod.ttf) font.
+- [https://faucetcripple.github.io/](https://faucetcripple.github.io/) - deployment of this repository.
 
-Trent did it.
 
-There is also balls.
+
+## <span style="font-family:VT220-mod;"> TOOLS:
+- [/tool_doe](https://faucetcripple.github.io/tool_doe) - DeviceOrientationEvent Basic Readout (mobile devices)
+
+## <span style="font-family:VT220-mod;">EXAMPLES:
+
+
+- [/example_menu](https://faucetcripple.github.io/example_menu) - Phaser3 + Matter.js Example Menu
+- [/example_balls](https://faucetcripple.github.io/example_balls) - Balls
+- [/example_box](https://faucetcripple.github.io/example_box) - Boxes
+- [/example_gravity](https://faucetcripple.github.io/example_gravity) - Gravity Manipulation
+- [/example_fullscreen](https://faucetcripple.github.io/example_fullscreen) - Gravity Fullscreen
+- [/use_doe](https://faucetcripple.github.io/use_doe) - DeviceOrientationEvent Gravity
+
+
