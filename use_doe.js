@@ -1,6 +1,6 @@
 var global = {
     scene: undefined,
-    scale: 4,
+    scale: 3,
 };
 
 var config = {
