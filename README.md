@@ -19,4 +19,20 @@
 - [/example_fullscreen](https://faucetcripple.github.io/example_fullscreen) - Gravity Fullscreen
 - [/use_doe](https://faucetcripple.github.io/use_doe) - DeviceOrientationEvent Gravity
 
+## <span style="font-family:VT220-mod;">BONUS:
+```
+const which = {
+  "stuff": "fonts so big",
+  "hole": ["A","P","D","B"],
+  "bodypart": 'wick'
+}
+
+console.log(`they had ${which.stuff} you could fit your whole ${which.bodypart}in the ${which.hole[Math.floor(Math.random()*which.hole.length-1)]} hole!`);
+    
+// expected possible readouts:
+// They had fonts so big you could fit your whole wick in the A hole!
+// They had fonts so big you could fit your whole wick in the P hole!
+// They had fonts so big you could fit your whole wick in the D hole!
+// They had fonts so big you could fit your whole wick in the B hole!
+```
 
