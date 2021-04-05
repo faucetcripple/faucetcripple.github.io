@@ -12,7 +12,7 @@ var config = {
     },
     parent: 'game',
     pixelArt: true,
-    backgroundColor: "#151525",
+    backgroundColor: "#000000",
     scene: {
         preload: preload,
         create: create,
@@ -72,9 +72,9 @@ function create() {
     function deviceOrientationListener(event) {
         document.getElementById('readoutA').textContent = Math.round(event.alpha);
         document.getElementById('readoutB').textContent = Math.round(event.beta);
-        global.scene.matter.world.engine.world.gravity.y = -(Math.round(event.beta) / 180);
+        global.scene.matter.world.engine.world.gravity.y = (Math.round(event.beta) / 180);
         document.getElementById('readoutG').textContent = Math.round(event.gamma);
-        global.scene.matter.world.engine.world.gravity.x = -(Math.round(event.gamma) / 90);
+        global.scene.matter.world.engine.world.gravity.x = (Math.round(event.gamma) / 90);
     }
 
 
