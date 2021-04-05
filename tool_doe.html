@@ -17,6 +17,8 @@
     
     #display {
         border: 2px solid brown;
+        border-radius: 24px;
+        background: rgba(15,15,15,0.8);
     }
 
     body {
@@ -29,6 +31,11 @@
     * {
         margin: 0;
         padding: 20px;
+        text-shadow: 2px 2px 2px green;
+    }
+    
+    #readoutE{
+        color: red;
     }
 </style>
 
@@ -38,6 +45,7 @@
         <center><span id='readoutB'></span></center>
         <center><span id='readoutG'></span></center>
     </div>
+        <center><span id='readoutE'></span></center>
     <script>
         // Orientation Check
         var supportsOrientation = "No"
@@ -45,14 +53,14 @@
             window.addEventListener("deviceorientation", deviceOrientationListener);
             var supportsOrientation = "Yes";
         } else {
-            document.getElementById("readout").innerHTML = "deviceorientation Not Supported!"
+            document.getElementById("readoutE").innerHTML = "No Support!"
         }
         //END Check to see if browser supports motion
 
         function deviceOrientationListener(event) {
-            document.getElementById('readoutA').textContent = `Alpha: ${Math.round(event.alpha)}`
-            document.getElementById('readoutB').textContent = `Beta: ${Math.round(event.beta)}`
-            document.getElementById('readoutG').textContent = `Gamma: ${Math.round(event.gamma)}`
+            document.getElementById('readoutA').textContent = `Alpha:${Math.round(event.alpha)}`
+            document.getElementById('readoutB').textContent = `Beta:${Math.round(event.beta)}`
+            document.getElementById('readoutG').textContent = `Gamma:${Math.round(event.gamma)}`
         }
     </script>
 </body></html>
