@@ -66,9 +66,9 @@ if (window.DeviceOrientationEvent) {
 function deviceOrientationListener(event) {
     document.getElementById('readoutA').textContent = Math.round(event.alpha);
     document.getElementById('readoutB').textContent = Math.round(event.beta);
-    global.scene.matter.world.engine.world.gravity.y = -(Math.round(event.beta) / 180)*2;
+    global.scene.matter.world.engine.world.gravity.y = -(Math.round(event.beta) / 180);
     document.getElementById('readoutG').textContent = Math.round(event.gamma);
-    global.scene.matter.world.engine.world.gravity.y = -(Math.round(event.gamma) / 90)*2;
+    global.scene.matter.world.engine.world.gravity.x = -(Math.round(event.gamma) / 90);
 }
     
     
