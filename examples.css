@@ -1,0 +1,133 @@
+/*
+core css
+*/
+
+@font-face {
+    font-family: 'VT220';
+    src: url('fonts/VT220-mod.ttf');
+}
+
+@font-face {
+    font-family: 'Mono';
+    src: url('fonts/monofonto.ttf');
+}
+
+@font-face {
+    font-family: 'Tiny';
+    src: url('fonts/tiny.ttf');
+}
+
+* {
+    font-family: 'Mono';
+}
+
+html {
+    height: 1600px;
+}
+
+body {
+    background: rgb(10, 10, 20);
+    color: limegreen;
+}
+
+#title {
+    font-family: 'VT220';
+    position: static;
+    font-size: 42px;
+}
+
+#infobar {
+    font-family: 'VT220';
+    position: absolute;
+    font-size: 32px;
+    width: 98%;
+    top:564px;
+     transform: translate(-50%, 0);
+
+}
+
+#infobottom {
+    font-family: 'VT220';
+    font-size: 42px;
+    position: absolute;
+    top: 1476px;
+    margin: 0;
+    padding: 0;
+    width: 98%;
+    height: 42px;
+    transform: translate(-50%, 0);
+}
+
+
+canvas {
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 32px;
+    display: block;
+    width: 800px;
+    border-radius: 25px;
+    border: 1px solid brown;
+}
+
+#editor {
+    font-style: 'Mono';
+    margin: 0;
+    position: absolute;
+    align-content: center;
+    top: 604px;
+    width: 920px;
+    height: 840px;
+    font-size: 14px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border: 1px solid brown;
+    border-radius: 25px;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#menu {
+    position: static;
+    margin: 0;
+    margin-top: 24px;
+    width: 440px;
+    align-content: center;
+}
+
+li {
+    font-size: 32px;
+    text-decoration: none;
+    list-style-type: none;
+    margin: 2px;
+    padding: 10px;
+    width: 360px;
+    border: 1px solid brown;
+    border-radius: 14px;
+
+}
+
+.clickit {
+    position: static;
+    margin: auto;
+    text-decoration: none;
+    transition: 1s;
+    background: transparent;
+    font-size: 32px;
+    padding: 0.3em;
+    width: 400px;
+    border-radius: 14px;
+    font-size: 32px;
+    text-decoration-style: none;
+}
+
+
+
+.clickit:hover {
+    color: lime;
+    transition: 1s;
+}
