@@ -1,7 +1,7 @@
 # <span style="font-family:VT220-mod;">d74g0n's WebKitchen.io
 ## <span style="font-family:VT220-mod;">Follow Me, [https://www.twitch.tv/d74g0n](https://www.twitch.tv/d74g0n)
     
-<span style="font-family:VT220-mod;"> Best viewed using [VT220-mod.ttf](https://faucetcripple.github.io/use_doe/fonts/VT220-mod.ttf) font.
+<span style="font-family:VT220-mod;"> Best viewed using [VT220-mod.ttf](https://faucetcripple.github.io/fonts/VT220-mod.ttf) font.
 - [https://faucetcripple.github.io/](https://faucetcripple.github.io/) - deployment of this repository.
 
 
@@ -29,10 +29,10 @@ const which = {
 
 console.log(`they had ${which.stuff} you could fit your whole ${which.bodypart}in the ${which.hole[Math.floor(Math.random()*which.hole.length-1)]} hole!`);
     
-// expected possible readouts:
+// possible readouts:
 // They had fonts so big you could fit your whole wick in the A hole!
 // They had fonts so big you could fit your whole wick in the P hole!
 // They had fonts so big you could fit your whole wick in the D hole!
 // They had fonts so big you could fit your whole wick in the B hole!
 ```
-
+** Those who measure, walk together. **
