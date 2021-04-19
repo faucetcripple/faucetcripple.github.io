@@ -7,7 +7,7 @@
 
 
 ## <span style="font-family:VT220-mod;"> TOOLS:
-- [/tool_doe](https://faucetcripple.github.io/tool_doe) - DeviceOrientationEvent Basic Readout (mobile devices)
+- [/tool_doe](https://faucetcripple.github.io/doe/tool_doe) - DeviceOrientationEvent Basic Readout (mobile devices)
 
 ## <span style="font-family:VT220-mod;">EXAMPLES:
 
