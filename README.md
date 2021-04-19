@@ -12,12 +12,12 @@
 ## <span style="font-family:VT220-mod;">EXAMPLES:
 
 
-- [/example_menu](https://faucetcripple.github.io/example_menu) - Phaser3 + Matter.js Example Menu
-- [/example_balls](https://faucetcripple.github.io/example_balls) - Balls
-- [/example_box](https://faucetcripple.github.io/example_box) - Boxes
-- [/example_gravity](https://faucetcripple.github.io/example_gravity) - Gravity Manipulation
-- [/example_fullscreen](https://faucetcripple.github.io/example_fullscreen) - Gravity Fullscreen
-- [/use_doe](https://faucetcripple.github.io/use_doe) - DeviceOrientationEvent Gravity
+- [/example_menu](https://faucetcripple.github.io/examples/example_menu) - Phaser3 + Matter.js Example Menu
+- [/example_balls](https://faucetcripple.github.io/examples/example_balls) - Balls
+- [/example_box](https://faucetcripple.github.io/examples/example_box) - Boxes
+- [/example_gravity](https://faucetcripple.github.io/examples/example_gravity) - Gravity Manipulation
+- [/example_fullscreen](https://faucetcripple.github.io/examples/example_fullscreen) - Gravity Fullscreen
+- [/use_doe](https://faucetcripple.github.io/doe/use_doe) - DeviceOrientationEvent Gravity
 
 ## <span style="font-family:VT220-mod;">BONUS:
 ```

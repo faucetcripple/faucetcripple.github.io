@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>Sliders</title>
+    <meta name="author" content="Your Name">
+    <meta name="description" content="Example description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <link rel="icon" type="image/x-icon" href="" />
+</head>
+<style>
+    * {
+        font-family: 'VT220-mod'
+    }
+
+    #dragger {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: auto;
+        border: 1px solid red;
+        width: 200px;
+        padding: 0;
+        padding-top: 10px;
+        padding-bottom: 8px;
+        border-radius: 15px;
+        background: black;
+        color: white;
+        /
+    }
+
+    .slider {
+        -webkit-appearance: none;
+        /* Override default CSS styles */
+        appearance: none;
+        width: 150px;
+        /* Full-width */
+        height: 25px;
+        /* Specified height */
+        background: #151535;
+        /* Grey background */
+        outline: none;
+        /* Remove outline */
+        opacity: 0.7;
+        /* Set transparency (for mouse-over effects on hover) */
+        -webkit-transition: .2s;
+        /* 0.2 seconds transition on hover */
+        transition: opacity .2s;
+
+        /*        z-index: 5;*/
+        /*        z-index: 5;*/
+    }
+
+    #label {
+        font-size: 12px;
+        float: left;
+        padding-left: 20px;
+
+        margin-top: -23px;
+        margin-left: 15px;
+    }
+
+    .readout {
+        font-size: 12px;
+        /*        float: right;*/
+        padding-right: 40px;
+        margin-top: -23px;
+        margin-left: 150px;
+
+    }
+
+    #mover {
+        background: grey;
+        /*        z-index: 10;*/
+
+        margin-top: -10px;
+        padding-left: 10px;
+        user-select: none;
+    }
+
+    #sliders {}
+
+</style>
+<script type="text/javascript" src="/common/js/drag_element.js"></script>
+
+<body>
+
+    <div id="dragger">
+        <!--        <div id="mover">drag on</div>-->
+        <center>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="100" value="50" class="slider" id="Range_A">
+                <span id="label">LABEL A</span>
+                <p class="readout" id="readout_A">50</p>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="100" value="50" class="slider" id="Range_B">
+                <span id="label">LABEL B</span>
+                <p class="readout" id="readout_B">50</p>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="100" value="50" class="slider" id="Range_C">
+                <span id="label">LABEL C</span>
+                <p class="readout" id="readout_C">50</p>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="100" value="50" class="slider" id="Range_D">
+                <span id="label">LABEL D</span>
+                <p class="readout" id="readout_D">50</p>
+            </div>
+        </center>
+
+
+    </div>
+
+    <script>
+        dragElement(document.getElementById("dragger"));
+
+        var readout_A = document.getElementById("readout_A");
+        var Range_A = document.getElementById("Range_A");
+        Range_A.oninput = function() {
+            readout_A.innerHTML = this.value;
+            // set linked value in phaser here = this.value;
+        }
+        var readout_B = document.getElementById("readout_B");
+        var Range_B = document.getElementById("Range_B");
+        Range_B.oninput = function() {
+            readout_B.innerHTML = this.value;
+            // set linked value in phaser here = this.value;
+        }
+        var readout_C = document.getElementById("readout_C");
+        var Range_C = document.getElementById("Range_C");
+        Range_C.oninput = function() {
+            readout_C.innerHTML = this.value;
+            // set linked value in phaser here = this.value;
+        }
+        var readout_D = document.getElementById("readout_D");
+        var Range_D = document.getElementById("Range_D");
+        Range_D.oninput = function() {
+            readout_D.innerHTML = this.value;
+            // set linked value in phaser here = this.value;
+        }
+
+    </script>
+
+</body>
+
+</html>
