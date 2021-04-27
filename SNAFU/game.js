@@ -7,7 +7,7 @@ import BendWavesPostFX from '../pipelines/BendWavesPostFX.js';
 import BlurPostFX from '../pipelines/BlurPostFX.js';
 import PixelatedFX from '../pipelines/PixelatedFX.js';
 import PlasmaPostFX from '../pipelines/PlasmaPostFX.js';
-import PlasmaPost2FX from '../pipelines/PlasmaPost2FX.js';
+import PlasmaPost2FX from '../pipelines/PPlasmaPost2FX.js';
 
 import PlasmaPost3FX from '../pipelines/PlasmaPost3FX.js';
 import BendWaves2 from '../pipelines/BendWaves2.js';
@@ -16,6 +16,9 @@ import ScalinePostFX from '../pipelines/ScalinePostFX.js';
 
 import HueRotate from '../pipelines/HueRotate.js';
 
+
+import SHADE_ELEVATOR from '../pipelines/Shade_Elevator.js';
+import LIGHTSPIN from '../pipelines/LIGHTSPIN.js';
 // doing this  until i figure out a better way to get to external scene scopes::
 window.fx = {}
 window.fx.HueRotatePostFX = HueRotatePostFX;
@@ -33,6 +36,8 @@ window.fx.PlasmaPost3FX = PlasmaPost3FX;
 
 window.fx.ScalinePostFX = ScalinePostFX;
 window.fx.BendWaves2 = BendWaves2;
+window.fx.SHADE_ELEVATOR = SHADE_ELEVATOR;
+window.fx.LIGHTSPIN = LIGHTSPIN;
 
 
 
@@ -69,6 +74,8 @@ var config = {
         PlasmaPost3FX,
         ScalinePostFX,
         BendWaves2,
+        SHADE_ELEVATOR,
+        LIGHTSPIN,
     },
     physics: {
         default: "matter",

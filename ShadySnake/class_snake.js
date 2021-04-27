@@ -4,7 +4,6 @@ let s_adjust = {
     y: 8,
 }
 
-
 class Snake {
     constructor(id, scene, x, y, facing, headtile, tailtile, tint, isPiped = debug.isSnakePiped, speedmod = debug.startSpeed) {
 
@@ -126,12 +125,77 @@ class Snake {
                 if (_THIS.fx.headPulse.isOn) {
                     _THIS.fx.headPulse.run();
                 }
-                //            this.sinParts('x'); // gstate experimental
+
             }
         }
 
         this.createEnds();
 
+    }
+
+    createEnds() {
+        if (this.isPiped) {
+            //fancy::
+            //            this.head = this.scene.add.image(this.x, this.y, this.headtile).setTint(this.tint).setDepth(5).setPostPipeline(BendPostFX);
+            this.head = this.scene.add.image(this.x, this.y, this.headtile).setTint(this.tint).setDepth(50).setPostPipeline(SNAKE_EDGEBEND);
+            this.head.setPostPipeline(HueRotatePostFX)
+
+            //            this.end = this.scene.add.image(this.x, this.y, this.tailtile).setTint(this.tint).setDepth(3).setPostPipeline(BendPostFX); //HueRotatePostFX
+            this.end = this.scene.add.image(this.x, this.y, this.tailtile).setTint(this.tint).setDepth(3).setPostPipeline(SNAKE_EDGEBEND); //HueRotatePostFX
+            this.end.setPostPipeline(HueRotatePostFX)
+        } else {
+            //plain::
+            this.head = this.scene.add.image(this.x, this.y, this.headtile).setTint(this.tint).setDepth(50);
+
+
+            this.end = this.scene.add.image(this.x, this.y, this.tailtile).setTint(this.tint).setDepth(3);
+
+            this.end.gs = this.gs;
+
+        }
+
+        this.head.alpha = this.alpha;
+        this.end.alpha = this.alpha;
+
+        this.angleHead(this.d.di);
+        this.angleTail(this.d.di);
+    }
+
+    addPart(part) {
+        //this be old code
+        let angles = [90, 180, -90, 0]
+        if (this.isPiped) {
+            this.tail[this.tail.length] = this.scene.add.image(this.lastPos.x, this.lastPos.y, part).setTint(this.tint).setAngle(angles[this.d.di]).setAlpha(1).setPostPipeline(SNAKE_EDGEBEND);
+
+            this.tail[this.tail.length - 1].setPostPipeline(HueRotatePostFX);
+        } else {
+            this.tail[this.tail.length] = this.scene.add.image(this.lastPos.x, this.lastPos.y, part).setTint(this.tint).setAngle(angles[this.d.di]).setAlpha(1)
+        }
+
+        if (this.d.isCC) {
+            this.tail[this.tail.length - 1].setAngle(this.tail[this.tail.length - 1].angle -= 90);
+        }
+
+        if (part === 's_turn') { // hardcoded part
+            this.tail[this.tail.length - 1].isC = true;
+        } else {
+            this.tail[this.tail.length - 1].isC = false;
+        }
+
+        if (debug.isPlayerinContainer) {
+            window._C.add(this.tail[this.tail.length - 1]);
+        }
+        this.tail[this.tail.length - 1].setDepth(debug.playerBodyDepth);
+
+        // imprint tag true or false for things looking for it.
+        this.tail[this.tail.length - 1].isCC = this.d.isCC;
+
+        // WIP tag with current grid data.
+        this.tail[this.tail.length - 1].gs = {};
+        this.tail[this.tail.length - 1].gs.x = this.gs.x;
+        this.tail[this.tail.length - 1].gs.y = this.gs.y;
+
+        this.tail[this.tail.length - 1].alpha = this.alpha;
     }
 
     checkIfSelf() {
@@ -152,8 +216,8 @@ class Snake {
         return false;
     }
 
-    checkIfWall(ahead = 0, direction = this.d.di) {
-        switch (direction) {
+    checkIfWall(ahead = 0) {
+        switch (this.d.di) {
             case 0:
                 if (this.gs.y - ahead == 0) {
                     //                    console.log(`top detected ${ahead}`);
@@ -185,10 +249,8 @@ class Snake {
     }
 
     checkTile() {
-
         let dx = 0;
         let dy = 0;
-
         switch (this.d.di) {
             case 0:
                 dy--;
@@ -204,12 +266,8 @@ class Snake {
                 break;
         }
 
-
-
         if (GD.prop.floor.infoGrid[this.gs.y + dy][this.gs.x + dx]) {
             console.log(GD.prop.floor.infoGrid[this.gs.y + dy][this.gs.x + dx])
-            //        if (GD.prop.floor.infoGrid[this.gs.y][this.gs.x]) {
-
             this.isAlive = false;
             return true;
         } else {
@@ -218,86 +276,13 @@ class Snake {
 
     }
 
-    checkLeft(dist = 1) {
-        let leftturn = this.d.di - 1;
-        if (leftturn < 0) {
-            leftturn = 3
-        }
-        return this.checkIfWall(dist, leftturn);
-    }
-
-    checkRight(dist = 1) {
-        let leftturn = this.d.di + 1;
-        if (leftturn >= 4) {
-            leftturn = 0;
-        }
-        this.checkIfWall(dist, leftturn)
-    }
-
-    setSpeed(val) {
-        return this.movemod = Math.floor((val * 70) + 10);
-    }
-
-    setThrottle(val) {
-        let valb = 1 - val;;
-        return this.movemod = Math.floor((valb * 70) + 10);
-    }
-
-    showData() {
-        this.readout = this.scene.add.text(this.head.x + 16, this.head.y - 16, `testicle ${this.id}`);
-        //        this.readout.font = 'VT220-mod';
-    } //wip
-
-    dataReshow() {
-        this.readout.text = `id:${this.id}`;
-        this.readout.x = this.head.x + 16;
-        this.readout.y = this.head.y + 16;
-    } //wip
-
-    createEnds() {
-        if (this.isPiped) {
-            //fancy::
-            //            this.head = this.scene.add.image(this.x, this.y, this.headtile).setTint(this.tint).setDepth(5).setPostPipeline(BendPostFX);
-            this.head = this.scene.add.image(this.x, this.y, this.headtile).setTint(this.tint).setDepth(50).setPostPipeline(SNAKE_EDGEBEND);
-            this.head.setPostPipeline(HueRotatePostFX)
-
-            //            this.end = this.scene.add.image(this.x, this.y, this.tailtile).setTint(this.tint).setDepth(3).setPostPipeline(BendPostFX); //HueRotatePostFX
-            this.end = this.scene.add.image(this.x, this.y, this.tailtile).setTint(this.tint).setDepth(3).setPostPipeline(SNAKE_EDGEBEND); //HueRotatePostFX
-            this.end.setPostPipeline(HueRotatePostFX)
-        } else {
-            //plain::
-            this.head = this.scene.add.image(this.x, this.y, this.headtile).setTint(this.tint).setDepth(50);
-
-
-            this.end = this.scene.add.image(this.x, this.y, this.tailtile).setTint(this.tint).setDepth(3);
-
-            this.end.gs = this.gs;
-
-        }
-
-        this.head.alpha = this.alpha;
-        this.end.alpha = this.alpha;
-
-        this.angleHead(this.d.di);
-        this.angleTail(this.d.di);
-    }
-
-    headTween(tweendir) {
+    headTween() {
         // this actually moves the head.
-        let tweenA = undefined;
-
-
-
-
+        let tweenA = undefined; // this is yuck.
         let timeslice = 500 / 60;
         let duration = timeslice * this.movemod;
 
-
-
-
-
-
-        switch (tweendir) {
+        switch (this.d.di) {
             case 0:
                 tweenA = this.scene.tweens.add({
                     targets: this.head,
@@ -307,8 +292,6 @@ class Snake {
                     yoyo: false,
                     repeat: 0
                 });
-
-
                 break;
             case 1:
                 tweenA = this.scene.tweens.add({
@@ -320,12 +303,8 @@ class Snake {
                     yoyo: false,
                     repeat: 0
                 });
-
-
                 break;
             case 2:
-
-
                 tweenA = this.scene.tweens.add({
                     targets: this.head,
                     y: this.head.y + this.gs.s,
@@ -336,7 +315,6 @@ class Snake {
                     yoyo: false,
                     repeat: 0
                 });
-
                 break;
             case 3:
                 tweenA = this.scene.tweens.add({
@@ -348,64 +326,14 @@ class Snake {
                     yoyo: false,
                     repeat: 0
                 });
-
-
                 break;
             default:
                 console.log(`headTween default case hit`);
         }
-
-
-
     }
 
-    addPart(part) {
-        //this be old code
-
-
-
-        let angles = [90, 180, -90, 0]
-        if (this.isPiped) {
-            //            this.tail[this.tail.length] = this.scene.add.image(this.lastPos.x, this.lastPos.y, part).setTint(this.tint).setAngle(angles[this.d.di]).setAlpha(1).setPostPipeline(BendPostFX);
-            this.tail[this.tail.length] = this.scene.add.image(this.lastPos.x, this.lastPos.y, part).setTint(this.tint).setAngle(angles[this.d.di]).setAlpha(1).setPostPipeline(SNAKE_EDGEBEND);
-
-            this.tail[this.tail.length - 1].setPostPipeline(HueRotatePostFX);
-        } else {
-            this.tail[this.tail.length] = this.scene.add.image(this.lastPos.x, this.lastPos.y, part).setTint(this.tint).setAngle(angles[this.d.di]).setAlpha(1)
-        }
-
-        if (this.d.isCC) {
-            this.tail[this.tail.length - 1].setAngle(this.tail[this.tail.length - 1].angle -= 90);
-        }
-
-        if (part === 's_turn') { // hardcoded part
-            this.tail[this.tail.length - 1].isC = true;
-        } else {
-            this.tail[this.tail.length - 1].isC = false;
-        }
-
-
-        if (debug.isPlayerinContainer) {
-            window._C.add(this.tail[this.tail.length - 1]);
-        }
-        this.tail[this.tail.length - 1].setDepth(debug.playerBodyDepth);
-
-        // imprint tag true or false for things looking for it.
-        this.tail[this.tail.length - 1].isCC = this.d.isCC;
-
-
-        // WIP tag with current grid data.
-        this.tail[this.tail.length - 1].gs = {};
-        this.tail[this.tail.length - 1].gs.x = this.gs.x;
-        this.tail[this.tail.length - 1].gs.y = this.gs.y;
-
-        this.tail[this.tail.length - 1].alpha = this.alpha;
-
-
-    }
-
-    angleHead(doit) {
-        switch (doit) {
+    angleHead() {
+        switch (this.d.di) {
             case 0:
                 this.head.angle = 0;
                 break;
@@ -418,13 +346,11 @@ class Snake {
             case 3:
                 this.head.angle = -90;
                 break;
-
         }
     }
 
-    angleTail(mydir) {
-
-        switch (mydir) {
+    angleTail() {
+        switch (this.d.di) {
             case 0:
                 this.end.angle = -90;
                 break;
@@ -440,33 +366,11 @@ class Snake {
         }
     }
 
-    mySine() {
-        let rate = 5;
-        let mySine = Math.sin(this.movetick) / 10;
-        return mySine;
-    }
-
-    sinParts(key = 'scale') {
-
-        let scalefactor = 100;
-
-        this.tail.forEach(element => element[key] += (this.mySine()) * scalefactor);
-
-
-    }
-
     bodyPlacement() {
-
         // the head has just mutated and needs retargeting.
-
-        //        GD.prop.floor.writeInfo(this.gs.x, this.gs.y, false);
-
         this.head.y = this.lastPos.y;
         this.head.x = this.lastPos.x;
-
         let part = 's_mid';
-
-
         if (this.d.turnFlag) {
             part = 's_turn';
         }
@@ -512,9 +416,6 @@ class Snake {
         let timeslice = 500 / 60;
         let duration = timeslice * this.movemod;
 
-
-
-
         let tweenT = this.scene.tweens.add({
             targets: this.end,
             y: y,
@@ -537,10 +438,6 @@ class Snake {
                 repeat: 0
             });
         }
-
-
-
-
     }
 
     updateGS() {
@@ -562,13 +459,6 @@ class Snake {
 
     updateFloorInfo() {
         GD.prop.floor.writeInfo(this.gs.x, this.gs.y, true);
-    }
-
-    death_destroyTile() {
-
-        console.log(called);
-
-
     }
 
     deathSequence() {
@@ -692,7 +582,6 @@ class Snake {
     }
 
     collisionAction() {
-        console.log(`COLLISION ${this.gs.x},${this.gs.y}`);
         this.deathSequence();
         this.isAlive = false;
         this.head.alpha = 0; // pop noise. MOCK DEATH SEQUENCE
@@ -704,6 +593,8 @@ class Snake {
     }
 
     update() {
+
+
         this.avoidWalls();
 
         if (this.isAlive) {} else {
@@ -723,6 +614,8 @@ class Snake {
                 } else {
                     // all normal 'action ticks'
                     // setup
+                    EVE.update();
+
                     this.actioncount++;
                     this.captureLastFrameData();
                     // mutate
@@ -730,18 +623,10 @@ class Snake {
                     // sync
                     this.updateGS(); // update movement from origin.
 
-
-
                     if (this.checkIfSelf()) {
-                        this.angleHead(this.d.di);
+                        this.angleHead(); // collision FX related.
                         this.collisionAction();
-                        // stop head from being drawn
-                        //                        return;
                     }
-
-
-
-
 
                     // Tell floor to create collider:
                     this.updateFloorInfo(); // writing early??

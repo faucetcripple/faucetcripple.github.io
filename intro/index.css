@@ -1,0 +1,102 @@
+@font-face {
+    font-family: 'VT220';
+    src: url('../fonts/VT220-mod.ttf');
+}
+
+@font-face {
+    font-family: 'Mono';
+    src: url('../fonts/monofonto.ttf');
+}
+
+@font-face {
+    font-family: 'Tiny';
+    src: url('../fonts/tiny.ttf');
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: white;
+}
+
+html,
+body {
+    width: 70px;
+    height: 70px;
+}
+
+div {
+    font-family: 'VT220';
+
+}
+
+#game {
+    z-index: 2;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    /*    visibility: hidden;*/
+}
+
+.title {
+    font-size: 52px;
+    display: block;
+    text-align: center;
+    /*    background: red;*/
+    width: 100vw;
+    color: red;
+    padding-right: 1em;
+    padding-top: 1em;
+    /*    height: 1em;*/
+}
+
+.enter_click {
+    text-align: center;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+#enter_text {
+    user-select: none;
+    border: 1px solid lime;
+    border-radius: 15px;
+    background: black;
+    color: darkorange;
+    padding: 0.25em;
+    font-size: 52px;
+    padding-left: 0.38em;
+}
+
+
+#enter_text:hover {
+    background: black;
+    transition: 1s;
+    color: white;
+
+}
+
+
+
+#blurb {
+    width: 100vw;
+}
+
+.informational {
+    font-size: 48px;
+    color: lime;
+    color: #ecec37;
+    display: block;
+    align-self: center;
+    text-align: center;
+    background: black;
+    width: 512px;
+    margin: 0;
+    float: center;
+    /*    height: 1em;*/
+    padding: 1em;
+    border-radius: 25px;
+    border: 1px solid lime;
+}

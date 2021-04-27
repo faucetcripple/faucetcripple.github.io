@@ -21,7 +21,7 @@ const debug = {
     autoTurn: 100,
     startSpeed: 10, // this is setup wrong in snake with speedmodolo unwired
     readout: false,
-    startLength: 10,
+    startLength: 2,
     playerBodyDepth: 2, //body
     showInfoGrid: false, // hitboxes
 
@@ -31,19 +31,16 @@ const debug = {
 // super state (no functions)
 let SS = {
     roundStart: false,
-    //    zoom: 0.75,
     lvl: initData.lvl,
     isSpawnMarked: false,
     zoom: 1,
     // snakes::
     playerAlpha: 1,
-
     rotTileCaseIndex: 0,
     tweenTileBool: false,
     //perl alpha toggles::
     noiseAlphaEdges: undefined, // to be wired in.
     noiseAlphaIndex: 0, // to be wired in.
-    noiseAlphaGrid: false, // just init phase.
     noiseAlphaTick: false,
 };
 window.SS = SS; // used for console ? because im in a module?
@@ -57,6 +54,8 @@ let GD = {
     //    lvl: initData.lvl, // because it's single player.
     prop: {
         cam: undefined,
+        camBend: undefined,
+        camElevator: undefined,
         floor: undefined,
         player: undefined,
     },
@@ -78,5 +77,50 @@ let GOT = {
     },
     noise: function (x, y, z, o, p) {
         return getnoiseVal(x + GOT.nOf.x, y + GOT.nOf.y, z + GOT.nOf.z, o, p);
+    }
+}
+
+// event manager::
+let EVE = {
+    tickShort: 0,
+    tockLong: 0,
+    cycle: 100,
+    increment: function () {
+        EVE.tickShort++;
+        if (EVE.tickShort > EVE.cycle) {
+            EVE.tickShort = 1;
+            EVE.tockLong++;
+            console.log(`long + ${EVE.tockLong}`);
+        }
+    },
+    update: function () {
+        EVE.increment();
+        EVE.events();
+    },
+    getSin: function () {
+        return Math.abs(Math.sin(EVE.tickShort) / 100);
+    },
+    zonkZoom: function () {
+
+        //        GD.prop.cam.setZoom(EVE.getSin() - 5);
+
+    },
+    events: function () {
+        switch (EVE.tockLong) {
+            case 0:
+                EVE.zonkZoom();
+                break;
+            case 1:
+                SS.noiseAlphaTick = true;
+
+                break;
+            case 2:
+                SS.rotTileCaseIndex = 2;
+                break;
+            case 3:
+                SS.tweenTileBool = true;
+                break;
+
+        }
     }
 }

@@ -39,15 +39,11 @@ lime - 12581921.61570923
 /*NOTES
 Phaser.Math.RND. https://rexrainbow.github.io/phaser3-rex-notes/docs/site/random-data-generator/
 */
-const keeperPallette_notcode = [0x007737]
-
+const keeperPallette_notcode = [0x007737]; // unused note to self
 
 // #module
 import SNAKE_PLASMAFLOOR from '../pipelines/Snake_PlasmaFloor.js';
 import SNAKE_SPIRAL from '../pipelines/Snake_Spiral.js';
-
-// dimwit - add it to config::
-
 import LazersPostFX from '../pipelines/LazersPostFX.js';
 import BendPostFX from '../pipelines/BendPostFX.js';
 import BendRotationWavesPostFX from '../pipelines/BendRotationWavesPostFX.js';
@@ -63,21 +59,19 @@ import ScalinePostFX from '../pipelines/ScalinePostFX.js';
 import HueRotatePostFX from '../pipelines/HueRotatePostFX.js';
 import HueRotate from '../pipelines/HueRotate.js';
 import GREYSCALE from '../pipelines/GrayScale.js';
+
 import SNAKEORGY from '../pipelines/Snake_Orgy.js';
 import ELEVATOR from '../pipelines/Elevator.js';
 import SHADE_ELEVATOR from '../pipelines/Shade_Elevator.js';
 import RBMAT from '../pipelines/RBMAT.js';
-
-
 // good for space backdrop
 import LIGHTSPIN from '../pipelines/LIGHTSPIN.js';
-
 //raw::
 import HEXSPIRAL_TIGHT from '../pipelines/HEXSPIRAL_TIGHT.js';
-
 import SNAKE_EDGEBEND from '../pipelines/Snake_EdgeBend.js';
-window.SNAKE_EDGEBEND = SNAKE_EDGEBEND;
-window.RBMAT = RBMAT;
+
+//window.SNAKE_EDGEBEND = SNAKE_EDGEBEND;
+//window.RBMAT = RBMAT;
 const myPipe = SNAKE_EDGEBEND;
 
 var config = { // phaser config.
@@ -131,7 +125,7 @@ var config = { // phaser config.
     }
 };
 
-
+//refactor move this::
 window.control_turn = 0;
 
 function getnoiseVal(x = 1, y = 1, z = 1, o = 1, p = 1) {
@@ -158,9 +152,6 @@ var cursors;
 var game = new Phaser.Game(config);
 GD.game = game;
 //window.game = game;
-
-var pipcam;
-var pipcam2;
 
 // done gud::
 function preload() {
@@ -192,53 +183,68 @@ function preload() {
     this.load.image('s_turn', '../sprites/s_turn.png');
 }
 
-function create() {
-
-    // background stuff (unrefined)
-    let backdrop = this.add.image(0, 0, 'backdrop');
+function create_backdrop(scene) {
+    //'  backdrop' 640x360*2zoom
+    let backdrop = scene.add.image(0, 0, 'backdrop');
     backdrop.setScale(2);
     backdrop.setDepth(-20);
     backdrop.setPostPipeline(myPipe);
     //    backdrop.setPipeline(myPipe);
+    return backdrop;
+}
 
-    GD.prop.BG = backdrop;
+function create_cameras(scene) {
 
+    GD.prop.cam = scene.cameras.main;
+    GD.prop.cam.centerOn(0, 0);
+    GD.prop.cam.setZoom(0.5); // start zoomed out.
+    //    GD.prop.cam.setZoom(SS.zoom);
 
+    // camera::
+    var camzoom = scene.tweens.add({
+        targets: GD.prop.cam,
+        zoom: {
+            from: 0.50,
+            to: 1
+        },
+        ease: 'Sine.easeOut', // 'Cubic', 'Elastic', 'Bounce', 'Back'
+        duration: 4000,
+        delay: 500,
+        repeat: 0, // -1: infinity
+        yoyo: false
+    });
+
+    GD.prop.camBend = scene.cameras.add();
+    GD.prop.camBend.centerOn(0, 0);
+    GD.prop.camBend.setPostPipeline(BendWaves2).alpha = 0;
+    GD.prop.camBend.ignore(GD.prop.backdrop);
+
+    GD.prop.camElevator = scene.cameras.add();
+    GD.prop.camElevator.centerOn(0, 0);
+    GD.prop.camElevator.setPostPipeline(SHADE_ELEVATOR).alpha = 0;
+}
+
+function create() {
+
+    // background 
+    GD.prop.backdrop = create_backdrop(this);
 
     // floor
     GD.prop.floor = new Floor('basicfloor', GD.w, GD.h, 16, this);
+
     markSpawns(); // style floor (SS conditional):
 
     // spawn Players::
     setupSpawns(this);
 
-    // ALL THE CAMERA GOOP::
+    create_cameras(this);
 
-    GD.prop.cam = this.cameras.main;
-    GD.prop.cam.centerOn(0, 0);
-    //    GD.prop.cam.setZoom(SS.zoom);
-    GD.prop.cam.setZoom(0.5);
 
-    /*  // PIP CAMERA::
-    GD.prop.pipcam = this.cameras.add(480 - 16, 16, 640 / 4, 360 / 4);
-    GD.prop.pipcam.setZoom(3);
-    GD.prop.pipcam.startFollow(gstate.theLiving[gstate.pControlIndex].head);
-    //    GD.prop.pipcam.fade(2000);
-
-    GD.prop.pipcam2 = this.cameras.add(480 - 16, 90 + 16, 640 / 4, 360 / 4);
-    GD.prop.pipcam2.setZoom(3);
-    GD.prop.pipcam2.startFollow(gstate.theLiving[gstate.pControlIndex].head);
-    GD.prop.pipcam2.rotation = -3.14159;
-    GD.prop.pipcam2.setPostPipeline(myPipe);
-    //    GD.prop.pipcam2.scaleY = ;
-    //    GD.prop.pipcam.fade(2000);*/
-
+    // debuggy section::
     if (debug.camFollow) { //cam mode toggle
         GD.prop.cam.startFollow(gstate.theLiving[gstate.pControlIndex].head);
-
-        //            GD.prop.cam.followOffset.set(nx, ny);
+        // GD.prop.cam.followOffset.set(nx, ny);
     }
-
     if (debug.camPipe) {
         //        this.cameras.main.setPostPipeline(SNAKE_EDGEBEND);
         this.cameras.main.setPostPipeline(myPipe);
@@ -247,13 +253,12 @@ function create() {
         //        this.cameras.main.setPostPipeline(BendWavesPostFX);
         //        this.cameras.main.setPostPipeline(PlasmaPost2FX);
     }
-
-
-
     debug.text = this.add.text(10, 10, '', {
         fill: '#ffffff',
     }).setDepth(1);
 
+
+    // countdown
 
     // Ready, 3 ,2, 1::
     var style = {
@@ -320,27 +325,6 @@ function create() {
     setTimeout(function () {
         SS.roundStart = true;
     }, 4000);
-
-
-    // camera::
-
-    var camzoom = scene.tweens.add({
-        targets: GD.prop.cam,
-        zoom: {
-            from: 0.50,
-            to: 1
-        },
-        ease: 'Sine.easeOut', // 'Cubic', 'Elastic', 'Bounce', 'Back'
-        duration: 4000,
-        delay: 500,
-        repeat: 0, // -1: infinity
-        yoyo: false
-    });
-
-
-
-
-
 
 
 
@@ -463,126 +447,63 @@ function rndTileTween(frame) {
 }
 
 function rotGrid(val) {
+    // broken but something.
+    //    window._C.setOrigin(0, 0);
+    console.log(window._C);
     return window._C.angle += (val * val) * 2.5;
 }
 
-function markSpawns() {
-    if (SS.isSpawnMarked) {
-        // the true formula of 4x spawn.
-        // SPAWN MARKING
-        // spawn 1:
-        GD.prop.floor.markTile(2, Math.ceil(GD.h / 2), spawnColours[0]);
-        // spawn 2:
-        GD.prop.floor.markTile(GD.w - 2, Math.floor(GD.h / 2), spawnColours[1]);
-        // spawn 3:
-        GD.prop.floor.markTile(Math.floor(GD.w / 2), 2, spawnColours[2]);
-        // spawn 4:
-        GD.prop.floor.markTile(Math.ceil(GD.w / 2), GD.h - 2, spawnColours[3]);
+function rotCam(cam = GD.prop.cam, val = 0.05) {
+    return cam.rotation += val;
+}
+
+function update_styles() {
+    // all controlled through SS::
+
+    // floor phase::
+    rotTiles(SS.rotTileCaseIndex);
+
+    // floor phase::
+    if (SS.tweenTileBool) {
+        rndTileTween();
     }
+
+    // broken origin::
+    if (debug.rotGrid) { // borked due to origins. unused
+        rotGrid(0.05);
+    }
+
+
+    if (SS.rotCam) {
+        rotCam();
+    }
+
 }
-
-// debug level
-function syncDebugText(_S) {
-
-    debug.text.setText([
-            'id:' + _S.id,
-            'x: ' + _S.gs.x,
-            'y: ' + _S.gs.y,
-//            'sx:' + _S.gs.spx,
-//            'sy:' + _S.gs.spy,
-        ]);
-    debug.text.x = _S.head.x - 100;
-    debug.text.y = _S.head.y - 45;
-    debug.text.setDepth(8);
-}
-
-let sintick = 1;
-let turnCount = 0;
-let isLeftTurn = false;
 
 function update() {
-
-    //    GD.prop.BG.rotation += 0.0005;
-
     // update zoom by SS SUPERSTATE::
     //    GD.prop.cam.setZoom(SS.zoom);
     GD.prop.floor.updateFloor();
 
     // grab the client player: // refactor
-    let _S = gstate.theLiving[gstate.pControlIndex];
+    //    let _S = gstate.theLiving[gstate.pControlIndex];
 
-    /*    //autodriving stuff::
-        if (_S.actioncount % debug.autoTurn == 0 && _S.actioncount != 0) { // forget what i was doing but wanted to limit it lol
-            if (_S.movetick % _S.movemod == 0) {
-                turnCount++;
-                if (debug.autoDrive) {
-                    if (turnCount > 3) {
-                        turnCount = 0;
-                        isLeftTurn = !isLeftTurn;
-                    }
-                    if (isLeftTurn) {
-                        window.control_turn = -1;
-                    } else {
-                        window.control_turn = 1;
-                    }
-                }
-            }
-        }*/
-
-    /*
-    // INPUTS::
-    // DEV-CAMERA
-    if (cursors.up.isDown) {
-
-        sintick += 0.05;
-        if (sintick > 2) {
-            sintick = 2;
-        }
-
-    }
-    if (cursors.down.isDown) {
-        //        sintick -= 0.05;
-        //        if (sintick < 0) {
-        //            sintick = 1;
-        //        }
-
-
-        if (debug.noiseAlphaGrid) {
-            GD.prop.floor.activeNoise();
-        }
-    }*/
-
-    /*
     // SNAKE KEYBOARD CONTROLS:
     if (cursors.left.isDown) {
         window.control_turn = -1;
     }
     if (cursors.right.isDown) {
         window.control_turn = 1;
-    }*/
+    }
 
+    // triggered by tween round intro sequence ending::
     if (SS.roundStart) {
-
         // update all players.
+        // call their update functions::
         updateLivingSnakes();
-
     }
 
-
-
-
-
-    // style floor::
-
-    if (SS.tweenTileBool) {
-        rndTileTween();
-    }
-
-    rotTiles(SS.rotTileCaseIndex);
-
-    if (debug.rotGrid) {
-        rotGrid(0.5);
-    }
+    update_styles();
 
 
 

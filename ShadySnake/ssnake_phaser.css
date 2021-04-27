@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'VT220';
+    src: url('../fonts/VT220-mod.ttf');
+}
+
+@font-face {
+    font-family: 'Mono';
+    src: url('../fonts/monofonto.ttf');
+}
+
+@font-face {
+    font-family: 'Tiny';
+    src: url('../fonts/tiny.ttf');
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    background: black;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+div {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+}

@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'VT220';
+    src: url('../fonts/VT220-mod.ttf');
+}
+
+* {
+    background: black;
+    color: rgba(156, 0, 0, 1);
+    margin: 0;
+    padding: 0;
+    font-family: 'VT220';
+}
+
+#alias_label {
+    font-size: 24px;
+}
+
+form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 32px;
+    border: 4px solid rgba(156, 0, 0, 0.56);
+    align-content: center;
+    min-height: 186px;
+}
+
+#form_button {
+    position: inherit;
+    left: 0;
+    right: 0;
+    bottom: 32px;
+}
+
+input {
+    font-size: 32px;
+    width: 8em;
+    border-radius: 10px;
+    background: rgba(156, 156, 156, 0.1);
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding: 0.25em;
+    text-align: center;
+}
