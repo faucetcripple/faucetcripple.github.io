@@ -26,6 +26,7 @@ class Scene1 extends Phaser.Scene {
     preload() {
         this.load.image('logo', '../sprites/logo_trim.png');
         this.load.image('backdrop', '../sprites/backdrop_space.png');
+        this.load.image('king', '../sprites/kinghead.png');
 
         this.load.audio('intro_tune', ['audio/INTRO_TUNE_DCA.ogg', 'audio/INTRO_TUNE_DCA.mp3']);
 
@@ -82,9 +83,15 @@ class Scene1 extends Phaser.Scene {
 
         LOGO.setInteractive();
         LOGO.setScale(2);
-        //        LOGO.setPostPipeline(this._G.LazersPostFX);
+
+        if (Math.random() > 0.5) { // debug level randomization
+            LOGO.setPostPipeline(this._G.LazersPostFX);
+        }
+
+        // always want this, good for mock star twinkle::
         LOGO.setPostPipeline(this._G.LIGHTSPIN);
 
+        // infinte loop of wiggle waggle sine::
         scene.tweens.add({
             targets: LOGO,
             angle: opts.logoAngle,
@@ -94,29 +101,22 @@ class Scene1 extends Phaser.Scene {
             repeat: -1
         });
 
-        //        LOGO.once('pointerup', function () {
+        // this is fleshed out but not actually used:
+        // perhaps abstract it to function of inputs::
         LOGO.on('pointerup', function () {
-
-            console.log(_THIS.clickcount);
-
             switch (_THIS.clickcount++) {
                 case 0:
                     _THIS.tweenWorkIntro(_THIS);
                     break;
                 case 4:
-                    //                    _THIS.exitScene(LOGO);
+                    // _THIS.exitScene(LOGO);
                     break;
                 default:
-
-
             }
-
         });
 
         LOGO.alpha = 0.1;
         this.props.logo = LOGO;
-
-
     }
 
     setupBackdrop(scene) {
@@ -153,9 +153,6 @@ class Scene1 extends Phaser.Scene {
             yoyo: false
         });
 
-
-
-
         scene.tweens.add({
             targets: this.props.cam,
             zoom: {
@@ -172,10 +169,6 @@ class Scene1 extends Phaser.Scene {
             repeat: 0, // -1: infinity
             yoyo: false
         });
-
-
-
-
 
         scene.tweens.add({
             targets: this.props.backdrop,
@@ -194,8 +187,6 @@ class Scene1 extends Phaser.Scene {
             yoyo: false
         });
 
-
-
         scene.tweens.add({
             targets: this.props.backdrop,
             scale: {
@@ -208,9 +199,6 @@ class Scene1 extends Phaser.Scene {
             repeat: -1, // -1: infinity
             yoyo: true
         });
-
-
-
 
         scene.tweens.add({
             targets: this.props.camSpace,
@@ -229,10 +217,7 @@ class Scene1 extends Phaser.Scene {
             yoyo: true
         });
 
-
-
-
-
+        // WIP ANIMATION STUFF::
 
         /*        scene.tweens.add({
                     targets: this.props.cam,
@@ -273,9 +258,6 @@ class Scene1 extends Phaser.Scene {
             yoyo: true
         });*/
 
-
-
-
     }
 
     create() {
@@ -297,17 +279,28 @@ class Scene1 extends Phaser.Scene {
         this.setupMainCamera(this);
 
 
+        var KING = this.add.image(220, 120, 'king');
+        this.props.king = KING;
+
+
+
+
         let camBend = this.cameras.add();
+
+        this.props.cam.ignore(KING);
+        camBend.ignore(KING);
 
         camBend.setPostPipeline(window.fx.BendWaves2).alpha = 0.5;
         camBend.setPostPipeline(window.fx.LIGHTSPIN);
         camBend.setPostPipeline(window.fx.HueRotatePostFX);
         camBend.ignore(this.props.backdrop);
+
         camBend.centerOn(0, 0);
 
         let cam2 = this.cameras.add();
         cam2.setPostPipeline(window.fx.BendWaves2).alpha = 0;
         cam2.ignore(this.props.logo);
+        //        cam2.ignore(KING);
         cam2.centerOn(0, 0);
         this.props.camSpace = cam2;
 

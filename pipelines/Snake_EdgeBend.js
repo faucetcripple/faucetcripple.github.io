@@ -50,13 +50,13 @@ void main()
 
 //    float c3 = abs(sin(c2+cos(mov1+mov2+c2)+cos(mov2)+sin(x/1000.)));
 
-    vec4 pixel = texture2D(uMainSampler, outTexCoord);
+//    vec4 pixel = texture2D(uMainSampler, outTexCoord);
 
 // valid
 //    pixel *= vec4(c1, c2, c3, 1);
 //fn great::
 //    pixel += vec4(c1, c2, c3, 1);
-
+   vec4 pixel = texture2D(uMainSampler, outTexCoord);
     pixel += vec4(c1, c2, c3, 1);
 
 

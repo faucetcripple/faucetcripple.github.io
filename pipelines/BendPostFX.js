@@ -23,10 +23,8 @@ void main()
 }
 `;
 
-export default class BendPostFX extends Phaser.Renderer.WebGL.Pipelines.PostFXPipeline
-{
-    constructor (game)
-    {
+export default class BendPostFX extends Phaser.Renderer.WebGL.Pipelines.PostFXPipeline {
+    constructor(game) {
         super({
             game,
             renderTarget: true,
@@ -44,35 +42,29 @@ export default class BendPostFX extends Phaser.Renderer.WebGL.Pipelines.PostFXPi
         this._speed = 0.003;
     }
 
-    onBoot ()
-    {
+    onBoot() {
         this.set1i('uMainSampler', 1);
     }
 
-    onPreRender ()
-    {
+    onPreRender() {
         this.set1f('uTime', this.game.loop.time);
         this.set1f('uSpeed', this._speed);
         this.set1f('uBendFactor', this._bend);
     }
 
-    get bend ()
-    {
+    get bend() {
         return this._bend;
     }
 
-    set bend (value)
-    {
+    set bend(value) {
         this._bend = value;
     }
 
-    get speed ()
-    {
+    get speed() {
         return this._speed;
     }
 
-    set speed (value)
-    {
+    set speed(value) {
         this._speed = value;
     }
 }
