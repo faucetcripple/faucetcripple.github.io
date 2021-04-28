@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Twit Portal</title>
+    <meta name="description" content="d74g0n's Art">
+    <meta name="keywords" content="javascript">
+    <meta name="robots" content="noarchive" />
+    <meta charset="UTF-8">
+    <meta name="author" content="d74g0n">
+    <link rel="shortcut icon" href="../common/img/pb.png" />
+    <meta property="og:image" content="../common/img/pmw.png">
+    <meta name="twitter:image" content="../common/img/pmw.png">
+</head>
+<script>
+    var setAddress = "breaking911.html";
+</script>
+<style>
+    @font-face {
+        font-family: '8bit';
+        src: url('../common/fonts/8bitOPR.ttf');
+    }
+
+    body {
+        background: black;
+        color: white;
+        width: auto;
+        align-content: center;
+        text-align: center;
+    }
+
+    #container {
+        align-content: center;
+        text-align: center;
+
+        margin: 0;
+        padding: 0;
+
+        background: black;
+        border-radius: 65px;
+        width: 800px;
+        min-width: 500px;
+        height: 900px;
+    }
+
+    img {
+        margin: 64px;
+        width: 600px;
+
+        max-width: 60vw;
+        image-rendering: -moz-crisp-edges;
+        /* Firefox */
+        image-rendering: -o-crisp-edges;
+        /* Opera */
+        image-rendering: -webkit-optimize-contrast;
+        /* Webkit (non-standard naming) */
+        image-rendering: crisp-edges;
+        -ms-interpolation-mode: nearest-neighbor;
+        /* IE (non-standard property) */
+    }
+
+    #pressstart {
+        margin-top: 2em;
+        font-family: '8bit';
+        font-size: 55px;
+        font-size: auto;
+        transition: 0.2s;
+    }
+</style>
+
+<body onclick="clickedstart()">
+    <center>
+        <br><br><br><br>
+        <div id='container' onclick="enterNoise()">
+            <center>
+                <img class="qteam" id="logo" src="/common/img/pmw.png" />
+                <br>
+                <style>
+                    @keyframes blink {
+                        50% {
+                            opacity: 0.0;
+                        }
+                    }
+
+                    @-webkit-keyframes blink {
+                        50% {
+                            opacity: 0.0;
+                        }
+                    }
+
+                    .blink {
+                        animation: blink 2s step-start 1s infinite;
+                    }
+                </style>
+                <span id="pressstart" class="blink"> Press Start </span>
+                <script>
+                    let audio = new Audio('/common/audio/sfx_plink.wav');
+
+                    function enterNoise() {
+
+                        audio.volume = 0.2;
+                        audio.play();
+
+                    }
+
+                    function clickedstart() {
+                        setTimeout(fwdDatafag, 1000);
+                    }
+
+                    function fwdDatafag() {
+                        // where do we go when clicked?
+                        return window.location.href = setAddress;
+                    }
+                </script>
+            </center>
+
+        </div>
+    </center>
+</body></html>
