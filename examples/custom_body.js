@@ -47,19 +47,19 @@ var rotlinks = [];
 var depth = 4;
 
 function preload() {
-    this.load.image('head', 'sprites/head.png');
-    this.load.image('shirt', 'sprites/shirt.png');
-    this.load.image('leg', 'sprites/legstand.png');
-    this.load.image('lhand', 'sprites/lhand.png');
-    this.load.image('rhand', 'sprites/rhand.png');
-    this.load.image('logo', 'sprites/logo.png');
+    this.load.image('head', '../sprites/head.png');
+    this.load.image('shirt', '../sprites/shirt.png');
+    this.load.image('leg', '../sprites/legstand.png');
+    this.load.image('lhand', '../sprites/lhand.png');
+    this.load.image('rhand', '../sprites/rhand.png');
+    this.load.image('logo', '../sprites/logo.png');
     //    this.load.image('leg', 'sprites/legstand.png');
 
-    this.load.image('block', 'sprites/ball_white.png');
-    this.load.image('ball', 'sprites/ring.png');
-    this.load.image('link', 'sprites/link.png');
+    this.load.image('block', '../sprites/ball_white.png');
+    this.load.image('ball', '../sprites/ring.png');
+    this.load.image('link', '../sprites/link.png');
 
-    this.load.json('outlines', 'sprites/mult3.json');
+    this.load.json('outlines', '../sprites/mult3.json');
 }
 
 function create() {
@@ -67,64 +67,64 @@ function create() {
     var junkamount = 4;
 
     var shapes = this.cache.json.get('outlines');
-        for (var i = 0; i < junkamount; i++) {
-            var head = this.matter.add.sprite(10, 10, 'head', null, {
-                shape: shapes.head
-            });
+    for (var i = 0; i < junkamount; i++) {
+        var head = this.matter.add.sprite(10, 10, 'head', null, {
+            shape: shapes.head
+        });
 
-            head.setScale(4);
-            //        head.setMass(10);
+        head.setScale(4);
+        //        head.setMass(10);
 
-        }
+    }
 
-        //    var shapes = this.cache.json.get('outlines');
-        for (var i = 0; i < junkamount; i++) {
-            var head = this.matter.add.sprite(10, 10, 'shirt', null, {
-                shape: shapes.shirt
-            });
-            head.tint = Math.random() * 0xffffff;
-            head.setScale(4);
+    //    var shapes = this.cache.json.get('outlines');
+    for (var i = 0; i < junkamount; i++) {
+        var head = this.matter.add.sprite(10, 10, 'shirt', null, {
+            shape: shapes.shirt
+        });
+        head.tint = Math.random() * 0xffffff;
+        head.setScale(4);
 
-        }
+    }
 
 
-        //    var shapes = this.cache.json.get('outlines');
-        for (var i = 0; i < junkamount; i++) {
-            var head = this.matter.add.sprite(10, 10, 'leg', null, {
-                shape: shapes.legstand // the fucking filename
-            });
+    //    var shapes = this.cache.json.get('outlines');
+    for (var i = 0; i < junkamount; i++) {
+        var head = this.matter.add.sprite(10, 10, 'leg', null, {
+            shape: shapes.legstand // the fucking filename
+        });
 
-            head.setScale(4);
-            head.tint = Math.random() * 0xffffff;
+        head.setScale(4);
+        head.tint = Math.random() * 0xffffff;
 
-        }
-        //    var shapes = this.cache.json.get('outlines');
-        for (var i = 0; i < junkamount; i++) {
-            var head = this.matter.add.sprite(10, 10, 'rhand', null, {
-                shape: shapes.rhand // the fucking filename
-            });
+    }
+    //    var shapes = this.cache.json.get('outlines');
+    for (var i = 0; i < junkamount; i++) {
+        var head = this.matter.add.sprite(10, 10, 'rhand', null, {
+            shape: shapes.rhand // the fucking filename
+        });
 
-            head.setScale(4);
+        head.setScale(4);
 
-        }
-        //    var shapes = this.cache.json.get('outlines');
-        for (var i = 0; i < junkamount; i++) {
-            var head = this.matter.add.sprite(10, 10, 'lhand', null, {
-                shape: shapes.lhand // the fucking filename
-            });
+    }
+    //    var shapes = this.cache.json.get('outlines');
+    for (var i = 0; i < junkamount; i++) {
+        var head = this.matter.add.sprite(10, 10, 'lhand', null, {
+            shape: shapes.lhand // the fucking filename
+        });
 
-            head.setScale(4);
+        head.setScale(4);
 
-        }//
-//    let xoff = 10;
-//    for (var i = 0; i < junkamount; i++) {
-//        head = this.matter.add.sprite(xoff += 32, 10, 'logo', null, {
-//            shape: shapes.logo // the fucking filename
-//        });
-//        head.setScale(.5);
-//    }
-//
-//
+    } //
+    //    let xoff = 10;
+    //    for (var i = 0; i < junkamount; i++) {
+    //        head = this.matter.add.sprite(xoff += 32, 10, 'logo', null, {
+    //            shape: shapes.logo // the fucking filename
+    //        });
+    //        head.setScale(.5);
+    //    }
+    //
+    //
 
 
 

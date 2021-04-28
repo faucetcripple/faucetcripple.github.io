@@ -1,38 +1,119 @@
 <!DOCTYPE html>
-<html lang="ENG">
+<html>
+
 <head>
-    <meta charset="utf-8">
-    <title>Examples</title>
+    <title>Hi</title>
+    <meta name="description" content="d74g0n's Art">
+    <meta name="keywords" content="javascript">
+    <meta name="robots" content="noarchive" />
+    <meta charset="UTF-8">
     <meta name="author" content="d74g0n">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="examples/examples.css">
-    <link rel="stylesheet" href="">
-    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
-
+    <link rel="shortcut icon" href="/common/img/pb.png" />
+    <meta property="og:image" content="/common/img/pmw.png">
+    <meta name="twitter:image" content="/common/img/pmw.png">
 </head>
-<script src="//cdn.jsdelivr.net/npm/phaser@3.54.0/dist/phaser.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.js"></script>
+<script>
+    var setAddress = "../examples/index.html";
+</script>
+<style>
+    @font-face {
+        font-family: '8bit';
+        src: url('common/fonts/8bitOPR.ttf');
+    }
 
-<body>
-    </br>
-    <center><span id="title">-={ EXAMPLE MENU }=-</span></center>
-    <script src="examples/example_menu.js"></script>
-    <div id="game"></div>
-    </br>
-    <center><span id="infobar">-=[ MOUSE INTERACTIVE ]=-</span></center>
+    body {
+        background: black;
+        color: white;
+        width: auto;
+        align-content: center;
+        text-align: center;
+    }
 
+    #container {
+        align-content: center;
+        text-align: center;
+
+        margin: 0;
+        padding: 0;
+
+        background: black;
+        border-radius: 65px;
+        width: 800px;
+        min-width: 500px;
+        height: 900px;
+    }
+
+    img {
+        margin: 64px;
+        width: 600px;
+
+        max-width: 60vw;
+        image-rendering: -moz-crisp-edges;
+        /* Firefox */
+        image-rendering: -o-crisp-edges;
+        /* Opera */
+        image-rendering: -webkit-optimize-contrast;
+        /* Webkit (non-standard naming) */
+        image-rendering: crisp-edges;
+        -ms-interpolation-mode: nearest-neighbor;
+        /* IE (non-standard property) */
+    }
+
+    #pressstart {
+        margin-top: 2em;
+        font-family: '8bit';
+        font-size: 55px;
+        font-size: auto;
+        transition: 0.2s;
+    }
+</style>
+
+<body onclick="clickedstart()">
     <center>
-        <ul id="menu">
+        <br><br><br><br>
+        <div id='container' onclick="enterNoise()">
             <center>
-                <li id="button"><a href="example_balls.html" class="clickit">ADD BALL</a></li>
-                <li id="button"><a href="example_box.html" class="clickit">ADD BOX</a></li>
-                <li id="button"><a href="example_gravity.html" class="clickit">GRAVITY</a></li>
-                <li id="button"><a href="example_fullscreen.html" class="clickit">FULLSCREEN</a></li>
+                <img class="qteam" id="logo" src="/common/img/pmw.png" />
+                <br>
+                <style>
+                    @keyframes blink {
+                        50% {
+                            opacity: 0.0;
+                        }
+                    }
 
-                <!--                <li id="button"><a class="clickit">BALL EXAMPLE</a></li>-->
+                    @-webkit-keyframes blink {
+                        50% {
+                            opacity: 0.0;
+                        }
+                    }
 
+                    .blink {
+                        animation: blink 2s step-start 1s infinite;
+                    }
+                </style>
+                <span id="pressstart" class="blink"> Press Start </span>
+                <script>
+                    let audio = new Audio('/common/audio/sfx_plink.wav');
+
+                    function enterNoise() {
+
+                        audio.volume = 0.2;
+                        audio.play();
+
+                    }
+
+                    function clickedstart() {
+                        setTimeout(fwdDatafag, 1000);
+                    }
+
+                    function fwdDatafag() {
+                        // where do we go when clicked?
+                        return window.location.href = setAddress;
+                    }
+                </script>
             </center>
-        </ul>
-    </center>
 
+        </div>
+    </center>
 </body></html>

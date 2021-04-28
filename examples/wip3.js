@@ -1,15 +1,15 @@
 // #module
 
-import HueRotatePostFX from './pipelines/HueRotatePostFX.js';
-import LazersPostFX from './pipelines/LazersPostFX.js';
-import BendPostFX from './pipelines/BendPostFX.js';
-import BendRotationWavesPostFX from './pipelines/BendRotationWavesPostFX.js';
-import BendWavesPostFX from './pipelines/BendWavesPostFX.js';
-import BlurPostFX from './pipelines/BlurPostFX.js';
-import PixelatedFX from './pipelines/PixelatedFX.js';
-import PlasmaPostFX from './pipelines/PlasmaPostFX.js';
-import PlasmaPost2FX from './pipelines/PlasmaPost2FX.js';
-import ScalinePostFX from './pipelines/ScalinePostFX.js';
+import HueRotatePostFX from '../pipelines/HueRotatePostFX.js';
+import LazersPostFX from '../pipelines/LazersPostFX.js';
+import BendPostFX from '../pipelines/BendPostFX.js';
+import BendRotationWavesPostFX from '../pipelines/BendRotationWavesPostFX.js';
+import BendWavesPostFX from '../pipelines/BendWavesPostFX.js';
+import BlurPostFX from '../pipelines/BlurPostFX.js';
+import PixelatedFX from '../pipelines/PixelatedFX.js';
+import PlasmaPostFX from '../pipelines/PlasmaPostFX.js';
+import PlasmaPost2FX from '../pipelines/PlasmaPost2FX.js';
+import ScalinePostFX from '../pipelines/ScalinePostFX.js';
 
 // try setting the container as a sensor.
 
@@ -58,20 +58,20 @@ function preload() {
     this.load.image('buttonBG', '/sprites/button_purple.png');
     //    this.load.image('buttonText', '/sprites/text_play.png');
 
-    this.load.image('head', 'sprites/head.png');
-    this.load.image('shirt', 'sprites/shirt.png');
-    this.load.image('leg', 'sprites/legstand.png');
-    this.load.image('legthin', 'sprites/legthin.png');
-    this.load.image('lhand', 'sprites/lhand.png');
-    this.load.image('rhand', 'sprites/rhand.png');
-    this.load.image('logo', 'sprites/logo.png');
-    this.load.image('buttonText', 'sprites/logo_trim.png');
-    this.load.image('gym', 'sprites/gym_bright.png');
-    this.load.image('sky', 'sprites/sky_bright.png');
+    this.load.image('head', '../sprites/head.png');
+    this.load.image('shirt', '../sprites/shirt.png');
+    this.load.image('leg', '../sprites/legstand.png');
+    this.load.image('legthin', '../sprites/legthin.png');
+    this.load.image('lhand', '../sprites/lhand.png');
+    this.load.image('rhand', '../sprites/rhand.png');
+    this.load.image('logo', '../sprites/logo.png');
+    this.load.image('buttonText', '../sprites/logo_trim.png');
+    this.load.image('gym', '../sprites/gym_bright.png');
+    this.load.image('sky', '../sprites/sky_bright.png');
 
-    this.load.image('block', 'sprites/ball_white.png');
+    this.load.image('block', '../sprites/ball_white.png');
 
-    this.load.image('ring', 'sprites/ring.png');
+    this.load.image('ring', '../sprites/ring.png');
     //    this.load.image('ring', 'particles/blue-flare.png');
     //    this.load.image('ring', 'particles/blue.png');
     //    this.load.image('ring', 'particles/bubble.png');
@@ -83,9 +83,9 @@ function preload() {
     //    this.load.image('ring', 'particles/rising-smoke.png');
 
 
-    this.load.image('link', 'sprites/link.png');
+    this.load.image('link', '../sprites/link.png');
 
-    this.load.json('outlines', 'sprites/mult5.json');
+    this.load.json('outlines', '../sprites/mult5.json');
 }
 
 

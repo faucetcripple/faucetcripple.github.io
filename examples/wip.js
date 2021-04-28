@@ -59,23 +59,23 @@ var emitter;
 var particles;
 
 function preload() {
-    this.load.image('head', 'sprites/head.png');
-    this.load.image('shirt', 'sprites/shirt.png');
-    this.load.image('leg', 'sprites/legstand.png');
-    this.load.image('lhand', 'sprites/lhand.png');
-    this.load.image('rhand', 'sprites/rhand.png');
-    this.load.image('logo', 'sprites/logo.png');
+    this.load.image('head', '../sprites/head.png');
+    this.load.image('shirt', '../sprites/shirt.png');
+    this.load.image('leg', '../sprites/legstand.png');
+    this.load.image('lhand', '../sprites/lhand.png');
+    this.load.image('rhand', '../sprites/rhand.png');
+    this.load.image('logo', '../sprites/logo.png');
 
 
     //    this.load.image('blue', 'particles/white-smoke.png');
-    this.load.image('blue', 'particles/smoke-puff.png');
+    //    this.load.image('blue', 'particles/smoke-puff.png');
     //    this.load.image('leg', 'sprites/legstand.png');
 
-    this.load.image('block', 'sprites/ball_white.png');
-    this.load.image('ring', 'sprites/ring.png');
-    this.load.image('link', 'sprites/link.png');
+    this.load.image('block', '../sprites/ball_white.png');
+    this.load.image('ring', '../sprites/ring.png');
+    this.load.image('link', '../sprites/link.png');
 
-    this.load.json('outlines', 'sprites/mult5.json');
+    this.load.json('outlines', '../sprites/mult5.json');
 }
 
 function create() {
