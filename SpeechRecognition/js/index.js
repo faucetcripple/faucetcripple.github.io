@@ -181,8 +181,6 @@ function create() {
 
 function update() {
 
-    //    container.angle += 0.05;
-
 }
 
 function say(msg) {
