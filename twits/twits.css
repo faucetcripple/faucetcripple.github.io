@@ -1,20 +1,12 @@
-* {
-    /*    font-family: "VT220";*/
-    /*    font-size: 10px;*/
-}
-
 body {
     background: black;
-    /*        background-image: url(https://media.giphy.com/media/WoD6JZnwap6s8/giphy.gif);*/
-    /*
-        background-repeat: repeat;
-        background-size: 300px 300px;*/
-    align-content: center;
 }
 
 #container {
-    /*        float: right;*/
     align-content: center;
     text-align: center;
-    width: 80vw;
+    width: auto;
+    margin: 20px;
+    padding: auto;
+    width: 640px;
 }
