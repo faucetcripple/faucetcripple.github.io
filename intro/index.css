@@ -1,16 +1,16 @@
 @font-face {
     font-family: 'VT220';
-    src: url('../fonts/VT220-mod.ttf');
+    src: url('../common/fonts/VT220-mod.ttf');
 }
 
 @font-face {
     font-family: 'Mono';
-    src: url('../fonts/monofonto.ttf');
+    src: url('../common/fonts/monofonto.ttf');
 }
 
 @font-face {
     font-family: 'Tiny';
-    src: url('../fonts/tiny.ttf');
+    src: url('../common/fonts/tiny.ttf');
 }
 
 
