@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    background: black;
+}
+
+/* to remove the top and left whitespace */
+
+html,
+body {
+    width: 98%;
+    height: 98%;
+}
+
+div {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+}

@@ -21,8 +21,8 @@ var config = {
 var game = new Phaser.Game(config);
 
 function preload() {
-    this.load.image('bin', 'sprites/wastebin.png');
-    this.load.image('ball', 'sprites/ball_white.png');
+    this.load.image('bin', '../sprites/wastebin.png');
+    this.load.image('ball', '../sprites/ball_white.png');
 }
 
 
@@ -41,19 +41,19 @@ function create() {
         var bin = this.matter.add.image(Phaser.Math.Between(32, 640), Phaser.Math.Between(0, 100), 'bin');
         bin.setScale(2);
         bin.tint = Math.random() * 0xffffff;
-        ball.setMass(1+Math.random()*100);
+        ball.setMass(1 + Math.random() * 100);
     }
 
     this.matter.add.mouseSpring();
-    
+
 }
 
 let framea = 0;
 let frameb = 0;
 
 function update() {
-//    framea += 0.01;
-//    frameb += 0.01;   
+    //    framea += 0.01;
+    //    frameb += 0.01;   
     framea += 0.04;
     frameb += 0.005;
     this.matter.world.engine.world.gravity.x = (Math.sin(framea) * 2);
