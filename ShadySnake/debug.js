@@ -4,7 +4,7 @@ const initData = {
     col: rndHex(),
     x: 20,
     y: 21,
-    lvl: 0,
+    lvl: 8,
     pcount: 0,
     //    lvl: Math.floor(Math.random() * 5),
 }

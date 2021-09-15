@@ -1,4 +1,5 @@
 import OLDMONITOR_FIXED from '../common/pipelines/OLDMONITOR_FIXED.js';
+import OLDMONITOR_RED from '../common/pipelines/OLDMONITOR_RED.js';
 
 var config = {
     type: Phaser.AUTO,
@@ -18,6 +19,7 @@ var config = {
     },
     pipeline: {
         OLDMONITOR_FIXED,
+        OLDMONITOR_RED,
     },
     physics: {
         default: "matter",
@@ -48,7 +50,8 @@ function create() {
     skull.alpha = 0.5;
     skull.tint = 0x007700;
     //    skull.setPostPipeline(OLDMONITOR_FIXED);
-    backdrop.setPostPipeline(OLDMONITOR_FIXED);
+    //    backdrop.setPostPipeline(OLDMONITOR_FIXED);
+    backdrop.setPostPipeline(OLDMONITOR_RED);
 
     cam = this.cameras.main;
 
